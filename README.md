@@ -1,7 +1,7 @@
 
 # fun-go by Fachrin Aulia
 
-> This is the newest version of [Go-JS Array](https://github.com/parinpan/gojs-array) that I used to create in advance. Now Fun-go supports generic slice type which means you can use any kind slice struct as an input.
+> This is the newest version of [Go-JS Array](https://github.com/parinpan/gojs-array) that I used to create in advance. Now Fun-go supports generic slice struct type which means you can use any kind slice struct as an input.
 
 Fun-go is the answer when you are sick of writing over and over again a looping block that seems giving much redundancy in your project. It's inspired by Javascript programming language to approach a better functional programming paradigm using Golang that at least currently doesn't support iteration methods.
 
