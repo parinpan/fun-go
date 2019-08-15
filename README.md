@@ -8,7 +8,7 @@ package main
 
 import (
 	"fmt"
-  
+
 	fungo "github.com/parinpan/fun-go"
 )
 
@@ -50,10 +50,11 @@ func main() {
 		fmt.Println(value.(string))
 	})
 
-	fmt.Println(fmt.Sprint("Product Price Total: ", productsPriceTotal)) // output: Product Price Total: 15000
-	fmt.Printf("%#v\n", productsFromOS)                                  /* output: []main.Product{main.Product{ID:1, Name:"Kemeja", Price:1000, Shop:main.Shop{Name:"shop #1", IsOfficialStore:true}}, main.Product{ID:3, Name:"Dompet
-	", Price:3000, Shop:main.Shop{Name:"shop #3", IsOfficialStore:true}}, main.Product{ID:5, Name:"Dispenser", Price:5000, Shop:main.Shop{Name:"shop #5
-	", IsOfficialStore:true}}} */
+	// output: Product Price Total: 15000
+	fmt.Println(fmt.Sprint("Product Price Total: ", productsPriceTotal))
+
+	// output: []main.Product{main.Product{ID:1, Name:"Kemeja", Price:1000, Shop:main.Shop{Name:"shop #1", IsOfficialStore:true}}, main.Product{ID:3, Name:"Dompet", Price:3000, Shop:main.Shop{Name:"shop #3", IsOfficialStore:true}}, main.Product{ID:5, Name:"Dispenser", Price:5000, Shop:main.Shop{Name:"shop #5", IsOfficialStore:true}}}
+	fmt.Printf("%#v\n", productsFromOS)
 }
 ```
 
