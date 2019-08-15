@@ -12,6 +12,7 @@ import (
 */
 
 func main() {
+	// ProductList -> []ProductList{...}
 	productSlice := fungo.NewSlice(ProductList)
 
 	// get all product which has official store shop
