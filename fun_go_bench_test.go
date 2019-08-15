@@ -1,5 +1,10 @@
 package fungo
 
+/*
+	Software Engineer: Fachrin Aulia Nasution
+	An always in beta software engineer
+*/
+
 import (
 	"fmt"
 	"math/rand"
