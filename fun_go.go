@@ -34,12 +34,21 @@ func NewSlice(slice interface{}) Slice {
 }
 
 // Map is the mapper
-func (s Slice) Map(format interface{}, callback mapCallback) interface{} {
-	var slice = createFormattedEmptyReflectionSlice(format, &s)
+func (s Slice) Map(callback mapCallback) interface{} {
+	if s.length == 0 {
+		return nil
+	}
 
-	for index := 0; index < s.length; index++ {
-		value := reflect.ValueOf(callback(s.values.Index(index).Interface(), index))
-		slice = appendSlice(&slice, &value)
+	// get first element, create slice of it, and append it to slice
+	var firstCallbackValue = reflect.ValueOf(callback(s.values.Index(0).Interface(), 0))
+	var slice = createFormattedEmptyReflectionSlice(&s, firstCallbackValue.Interface())
+	slice = appendSlice(&slice, &firstCallbackValue)
+
+	if s.length > 1 {
+		for index := 1; index < s.length; index++ {
+			value := reflect.ValueOf(callback(s.values.Index(index).Interface(), index))
+			slice = appendSlice(&slice, &value)
+		}
 	}
 
 	return slice.Interface()
@@ -79,9 +88,9 @@ func (s Slice) Reduce(callback reduceCallback) int64 {
 	return accumulator
 }
 
-func createFormattedEmptyReflectionSlice(format interface{}, s *Slice) reflect.Value {
+func createFormattedEmptyReflectionSlice(s *Slice, format interface{}) reflect.Value {
 	var formatType = reflect.ValueOf(format).Type()
-	var reflection = reflect.MakeSlice(reflect.SliceOf(formatType.Elem()), 0, s.length)
+	var reflection = reflect.MakeSlice(reflect.SliceOf(formatType), 0, s.length)
 	var reflectionValue = reflect.New(reflection.Type())
 	return reflectionValue.Elem()
 }

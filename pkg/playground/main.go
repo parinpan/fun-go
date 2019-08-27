@@ -16,13 +16,13 @@ func main() {
 	productSlice := fungo.NewSlice(ProductList)
 
 	// get all product which has official store shop
-	productsFromOS := productSlice.Filter(func(value interface{}, index int) bool {
+	productsFromOS, _ := productSlice.Filter(func(value interface{}, index int) bool {
 		product := value.(Product)
 		return product.Shop.IsOfficialStore
 	}).([]Product)
 
 	// get slice of product names string
-	productNames := productSlice.Map([]string{}, func(value interface{}, index int) interface{} {
+	productNames, _ := productSlice.Map(func(value interface{}, index int) interface{} {
 		return value.(Product).Name
 	}).([]string)
 

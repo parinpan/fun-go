@@ -24,13 +24,13 @@ func main() {
 	productSlice := fungo.NewSlice(ProductList)
 
 	// get all product which has official store shop
-	productsFromOS := productSlice.Filter(func(value interface{}, index int) bool {
+	productsFromOS, _ := productSlice.Filter(func(value interface{}, index int) bool {
 		product := value.(Product)
 		return product.Shop.IsOfficialStore
 	}).([]Product)
 
 	// get slice of product names string
-	productNames := productSlice.Map([]string{}, func(value interface{}, index int) interface{} {
+	productNames, _ := productSlice.Map(func(value interface{}, index int) interface{} {
 		return value.(Product).Name
 	}).([]string)
 
@@ -60,6 +60,9 @@ func main() {
 	fmt.Printf("%#v\n", productsFromOS)
 }
 ```
+
+To try the program above, execute with this command:
+`cd $GOPATH/src/github.com/parinpan/fun-go/pkg/playground && go run main.go marketplace.go`
 
 Benchmark Result tested on **MacBook Pro (13-inch, 2016, Two Thunderbolt 3 ports) 2 GHz Intel Core i5 8 GB 1867 MHz LPDDR3** with 1.000.000 slice elements of struct can be found in the test file.
 ```
